@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    container_name: streamlit_chatbot
+    volumes:
+      - ./:/app
+    ports:
+      - "9099:8501"
+    networks:
+      - local_network
+
+networks:
+  local_network:
+    driver: bridge

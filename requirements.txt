@@ -1,0 +1,15 @@
+# -----------------------------
+# Streamlit UI
+# -----------------------------
+streamlit==1.50.0            # Framework to quickly build web apps
+
+# -----------------------------
+# Configuration & Timezone Handling
+# -----------------------------
+django-environ==0.11.2       # Manage Django settings using environment variables
+pytz==2025.2                 # World timezone definitions for Python
+
+# -----------------------------
+# HTTP Client
+# -----------------------------
+httpx                         # HTTP client with async/sync support (for calling external APIs, testing, etc.)
