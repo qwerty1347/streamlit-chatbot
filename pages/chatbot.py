@@ -1,10 +1,28 @@
-import streamlit as st
+import base64
 import time
+import streamlit as st
 
-from datetime import datetime
+from pathlib import Path
+
+from app.chatbot.services.chatbot_service import ChatbotService
 
 
 st.set_page_config(page_title="chatbot", page_icon="💬", layout="centered")
+
+
+def get_base64_image(image_path: str):
+    try:
+
+        with open(image_path, "rb") as img_file:
+            return base64.b64encode(img_file.read()).decode()
+    except Exception as e:
+        print("이미지 로드 오류:", e)
+        return None
+
+PROFILE_IMAGE_PATH = Path("storage/chatbot/profile.png")
+PROFILE_BASE64 = get_base64_image(PROFILE_IMAGE_PATH)
+PROFILE_STYLE = f"background-image: url('data:image/png;base64,{PROFILE_BASE64}');" if PROFILE_BASE64 else ""
+
 
 st.markdown("""
     <style>
@@ -14,39 +32,26 @@ st.markdown("""
         padding: 20px 0;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
     }
 
     .chat-row {
         display: flex;
         align-items: flex-start;
         gap: 12px;
-        margin: 6px 0;
+        margin: 4px 0;
         animation: fadeIn 0.3s ease-in-out;
     }
 
-    /* AI 프로필 */
-    .assistant-profile {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #7BA8FF, #4E6CFF);
-        margin-top: 4px;
-        flex-shrink: 0;
-        box-shadow: 0 0 4px rgba(0,0,0,0.15);
-    }
-
-    /* 사용자 말풍선 */
     .user-row { justify-content: flex-end; }
 
     .chat-bubble {
-        padding: 12px 16px;
-        border-radius: 16px;
+        padding: 14px 18px;
+        border-radius: 18px;
         max-width: 80%;
         word-wrap: break-word;
-        position: relative;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-        line-height: 1.5;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        line-height: 1.3;
         transition: all 0.2s ease-in-out;
     }
 
@@ -54,29 +59,14 @@ st.markdown("""
         background: linear-gradient(135deg, #DCF8C6 0%, #c8f2b5 100%);
         color: #000;
         align-self: flex-end;
-        border-bottom-right-radius: 4px;
     }
 
     .assistant-bubble {
         background: #f1f0f0;
         color: #111;
         align-self: flex-start;
-        border-bottom-left-radius: 4px;
     }
 
-    .assistant-bubble::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: -6px;
-        width: 0;
-        height: 0;
-        border-right: 10px solid #f1f0f0;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-    }
-
-    /* 타이핑 애니메이션 */
     .typing {
         font-style: italic;
         color: #888;
@@ -110,48 +100,32 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+st.markdown(f"""
+    <style>
+    .assistant-profile {{
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        {PROFILE_STYLE}
+        background-size: cover;
+        background-position: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+        box-shadow: 0 0 4px rgba(0,0,0,0.15);
+    }}
+    </style>
+""", unsafe_allow_html=True)
 
 
 
-
-import requests
-
-def get_gpt_response(user_input: str) -> str:
-    """
-    API 호출해서 GPT 응답 받아오기
-    """
-
-    print(user_input)
-
-    API_URL = "/api/v1/agent/chatbot"  # 실제 API 주소
-    try:
-        response = requests.get(API_URL, params={"query": user_input}, timeout=10)
-        if response.status_code == 200:
-
-            data = response.json()
-            st.write("API Response:", data)
-
-            print(data)
-            return data.get("reply", "죄송합니다. 답변을 받지 못했습니다 😅")
-
-        else:
-            print("ERROR")
-            return f"API 오류: {response.status_code}"
-
-    except Exception as e:
-        return f"API 호출 실패: {str(e)}"
-
-
-
-
-
+chatbot_service = ChatbotService()
 
 
 
 # 세션 초기화
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "안녕하세요! 😊 저는 GPT 챗봇이에요.\n무엇을 도와드릴까요?"}
+        {"role": "assistant", "content": "안녕하세요! 🖐️ Agent 챗봇이에요<br/><br/>궁금하신 점이 있으면 질문을 입력해 주세요 😊"}
     ]
 
 st.sidebar.button("🧹 새 대화", on_click=lambda: st.session_state.clear())
@@ -192,7 +166,7 @@ if prompt := st.chat_input("메시지를 입력하세요..."):
     typing_placeholder = st.empty()
     typing_placeholder.markdown(f"""
         <div class="chat-row" style="align-items: center; gap: 8px; margin-top: 6px;">
-            <div class="assistant-profile" style="width: 24px; height: 24px; margin-top: 2px;"></div>
+            <div class="assistant-profile"></div>
             <div class="typing">
                 <span></span><span></span><span></span>
             </div>
@@ -201,7 +175,7 @@ if prompt := st.chat_input("메시지를 입력하세요..."):
     time.sleep(1.0)
 
     # 답변 생성
-    reply = get_gpt_response(prompt)
+    reply = chatbot_service.get_chatbot_output(prompt)
 
     typing_placeholder.empty()
 
