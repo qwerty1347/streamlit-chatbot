@@ -23,7 +23,7 @@ class ChatbotService:
 
             else:
                 print("ERROR: ", response, decoded)
-                output = "답변을 받지 못했습니다 😅"
+                output = "답변을 생성하지 못했습니다 😅"
 
             return output
 

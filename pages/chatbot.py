@@ -29,7 +29,7 @@ st.markdown("""
     .chat-container {
         max-width: 800px;
         margin: auto;
-        padding: 20px 0;
+        padding: 8px 0 20px 0;
         display: flex;
         flex-direction: column;
         gap: 8px;
