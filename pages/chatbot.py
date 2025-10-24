@@ -32,14 +32,14 @@ st.markdown("""
         padding: 8px 0 20px 0;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
     }
 
     .chat-row {
         display: flex;
         align-items: flex-start;
         gap: 12px;
-        margin: 4px 0;
+        margin-bottom: 10px;
         animation: fadeIn 0.3s ease-in-out;
     }
 
@@ -48,8 +48,10 @@ st.markdown("""
     .chat-bubble {
         padding: 14px 18px;
         border-radius: 18px;
-        max-width: 80%;
+        width: fit-content;
+        max-width: 480px;
         word-wrap: break-word;
+        white-space: pre-wrap;
         box-shadow: 0 2px 5px rgba(0,0,0,0.08);
         line-height: 1.3;
         transition: all 0.2s ease-in-out;
