@@ -27,6 +27,5 @@ class ChatbotService:
 
             return output
 
-
         except Exception as e:
             return f"관리자에게 문의해 주세요 {str(e)}"
