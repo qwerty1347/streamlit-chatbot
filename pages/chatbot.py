@@ -1,13 +1,13 @@
 import time
 import streamlit as st
 
-from app.chatbot.components.chatbot import markdown_assistant_style, render_chatbot_style
+from app.chatbot.components.chatbot import markdown_assistant_style, markdown_chatbot_style
 from app.chatbot.services.chatbot_service import ChatbotService
 
 
 st.set_page_config(page_title="chatbot", page_icon="💬", layout="centered")
 
-render_chatbot_style()
+markdown_chatbot_style()
 markdown_assistant_style()
 
 
