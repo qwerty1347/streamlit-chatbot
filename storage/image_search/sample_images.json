@@ -1,0 +1,116 @@
+{
+    "result": true,
+    "code": 200,
+    "data": [
+        {
+            "id": "17dcfa18-91c6-40c3-9f65-12b7e7d17705",
+            "image_path": "/static/images/fruits/50258aed9b823f5202fa1e6192ce42d4.jpg",
+            "bbox": [
+                39,
+                25,
+                367,
+                358
+            ],
+            "score": 0.90893865
+        },
+        {
+            "id": "b3d9129d-b4fc-4914-bb60-bf5fb9e03f2c",
+            "image_path": "/static/images/fruits/91e46035f86472aa58709025b5bf38d6.jpg",
+            "bbox": [
+                14,
+                150,
+                376,
+                511
+            ],
+            "score": 0.90606093
+        },
+        {
+            "id": "15bebec7-9bfd-4922-a4ef-e29cac906908",
+            "image_path": "/static/images/fruits/41901b1c05226e911397129c6d743d9c.jpg",
+            "bbox": [
+                0,
+                0,
+                670,
+                1200
+            ],
+            "score": 0.89014137
+        },
+        {
+            "id": "c7f6c1db-2e27-4811-8090-9e51166fe424",
+            "image_path": "/static/images/fruits/86c74838bf38012f29b0e564007bb1dc.jpg",
+            "bbox": [
+                119,
+                118,
+                1051,
+                1020
+            ],
+            "score": 0.8815868
+        },
+        {
+            "id": "69a48d98-731c-469e-8f8e-07982b74292a",
+            "image_path": "/static/images/fruits/8dfe8068aa2755cbe13ae938d9d7cf6f.jpg",
+            "bbox": [
+                540,
+                60,
+                1145,
+                716
+            ],
+            "score": 0.8639737
+        },
+        {
+            "id": "ed146ea6-2570-40c8-bf55-5541c11b1452",
+            "image_path": "/static/images/fruits/b6a5dbededde0c487eea4f9ea72021ce.jpg",
+            "bbox": [
+                11,
+                171,
+                635,
+                832
+            ],
+            "score": 0.8420086
+        },
+        {
+            "id": "5c1e8015-bf52-4e95-a18f-9becb9adc17d",
+            "image_path": "/static/images/fruits/a543761faefa7626be752ee69facc67f.jpg",
+            "bbox": [
+                96,
+                87,
+                382,
+                413
+            ],
+            "score": 0.83280843
+        },
+        {
+            "id": "ab878616-dfbb-419f-b2dc-58545fa0e980",
+            "image_path": "/static/images/fruits/c031ebbee955cae6355e44ea6781e003.jpg",
+            "bbox": [
+                140,
+                71,
+                221,
+                151
+            ],
+            "score": 0.8219666
+        },
+        {
+            "id": "e2135415-38e4-4a6f-b276-1345c8077019",
+            "image_path": "/static/images/fruits/aa22f3a1f2c40b13ad6ab299db03ee6c.jpg",
+            "bbox": [
+                92,
+                164,
+                700,
+                815
+            ],
+            "score": 0.78859425
+        },
+        {
+            "id": "a6239568-58df-4b76-9575-acdffcf068e8",
+            "image_path": "/static/images/fruits/ff15160e6ea617c6622b52b3b1ace174.jpg",
+            "bbox": [
+                55,
+                48,
+                698,
+                716
+            ],
+            "score": 0.77601546
+        }
+    ]
+}
